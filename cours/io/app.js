@@ -19,7 +19,7 @@ async function writeRandomUser() {
 }
 
 for (let i = 0; i < 3; i++) {
-  writeRandomUser()
+  await writeRandomUser()
 }
 
 console.log("LA SUITE DU SCRIPT !!");
