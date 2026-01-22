@@ -11,13 +11,15 @@ async function getRandomUser() {
 async function writeRandomUser() {
   const user = await getRandomUser();
 
-  const data = JSON.parse(await readFile("./user.json"))
-  data.push(user)
+  const data = JSON.parse(await readFile("./user.json"));
+  data.push(user);
 
   console.log("Ecriture du fichier sur le disque.");
   await writeFile("./user.json", JSON.stringify(data));
 }
 
-await writeRandomUser();
+for (let i = 0; i < 3; i++) {
+  writeRandomUser()
+}
 
 console.log("LA SUITE DU SCRIPT !!");
