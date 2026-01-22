@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gestion de Héros</title>
+    <script src="app.js" type="module"></script>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        padding: 20px;
+        background-color: #f4f4f4;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+      }
+
+      h1 {
+        color: #333;
+      }
+
+      form {
+        margin-bottom: 20px;
+      }
+
+      ul {
+        list-style-type: none;
+        padding: 0;
+      }
+
+      li {
+        padding: 10px;
+        background: #fff;
+        margin-bottom: 5px;
+        border: 1px solid #ddd;
+        cursor: pointer;
+        transition: background 0.3s;
+      }
+
+      li:hover {
+        background: #f0f0f0;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Gestion de Héros</h1>
+
+    <form id="hero-form">
+      <input type="text" id="hero-name" placeholder="Nom du héros" required />
+      <button type="submit">Ajouter</button>
+    </form>
+
+    <ul id="hero-list"></ul>
+  </body>
+</html>
