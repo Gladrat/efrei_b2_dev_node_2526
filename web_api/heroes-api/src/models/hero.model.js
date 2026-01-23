@@ -15,6 +15,13 @@ const model = {
     type: DataTypes.STRING,
     allowNull: false,
   },
+  id: {
+    type: DataTypes.UUID,
+    defaultValue: DataTypes.UUIDV4,
+    primaryKey: true
+  }
 };
 
 const Hero = sequelize.define("Hero", model);
+
+export default Hero;
