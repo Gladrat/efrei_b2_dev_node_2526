@@ -3,7 +3,7 @@ let heroes = [];
 const form = document.getElementById("hero-form");
 const heroList = document.getElementById("hero-list");
 
-form.addEventListener("submit", (event) => {
+form.addEventListener("submit", async (event) => {
   event.preventDefault();
   const heroName = document.getElementById("hero-name").value;
 
@@ -14,7 +14,16 @@ form.addEventListener("submit", (event) => {
 
   heroes.push(heroName);
 
-  localStorage.setItem("heroes", JSON.stringify(heroes));
+  // localStorage.setItem("heroes", JSON.stringify(heroes));
+  const response = await fetch('http://localhost:3000/heroes', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        hero: heroName
+      })
+    });
 
   const listItem = document.createElement("li");
   listItem.textContent = heroName;
