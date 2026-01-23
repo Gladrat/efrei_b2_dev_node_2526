@@ -1,0 +1,1 @@
+// npm install express sequelize sqlite3
