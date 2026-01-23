@@ -7,7 +7,8 @@ const app = express();
 app.use(express.json());
 
 app.get("/", async (req, res) => {
-  const html = await readFile("../index.html", { encoding: "utf8" });
+  let html = await readFile("../index.html", { encoding: "utf8" });
+  html = html.replace("{{date}}", "23/01/2026")
   res.send(html);
 });
 
