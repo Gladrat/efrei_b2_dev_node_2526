@@ -24,8 +24,14 @@ form.addEventListener("submit", (event) => {
 });
 
 window.addEventListener("DOMContentLoaded", () => {
-  heroes = JSON.parse(localStorage.getItem("heroes"));
-  console.log(heroes);
+  // let heroes = localStorage.getItem("heroes")
+  // if (!heroes) {
+  //   heroes = []
+  // } else {
+  //   heroes = JSON.parse(localStorage.getItem("heroes"));
+  // }
+
+  let heroes = JSON.parse(localStorage.getItem("heroes")) || [];
 
   heroes.forEach((hero) => {
     const heroItem = document.createElement("li");

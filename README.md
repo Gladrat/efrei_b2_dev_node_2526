@@ -3,3 +3,5 @@
 
 SHIELD
 Super Hero Index and Electronic Log Database
+
+nodemon --exec "cls && node" server.js
