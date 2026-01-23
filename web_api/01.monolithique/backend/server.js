@@ -1,6 +1,8 @@
 import express from "express";
 import { readFile } from "node:fs/promises";
 
+const heroes = ["SuperCORS"];
+
 const app = express();
 
 app.get("/", async (req, res) => {
@@ -13,6 +15,10 @@ app.get("/index.js", async (req, res) => {
   res.type("application/javascript");
   res.send(js);
 });
+
+app.get("/heroes", (req, res) => {
+  res.send(heroes)
+})
 
 app.listen(3000, () => {
   console.log("Serveur launched at http://localhost:3000");

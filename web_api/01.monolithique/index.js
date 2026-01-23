@@ -23,15 +23,11 @@ form.addEventListener("submit", (event) => {
   form.reset();
 });
 
-window.addEventListener("DOMContentLoaded", () => {
-  // let heroes = localStorage.getItem("heroes")
-  // if (!heroes) {
-  //   heroes = []
-  // } else {
-  //   heroes = JSON.parse(localStorage.getItem("heroes"));
-  // }
+window.addEventListener("DOMContentLoaded", async () => {
+  // heroes = JSON.parse(localStorage.getItem("heroes")) || [];
 
-  let heroes = JSON.parse(localStorage.getItem("heroes")) || [];
+  const response = await fetch("http://localhost:3000/heroes")
+  heroes = await response.json()
 
   heroes.forEach((hero) => {
     const heroItem = document.createElement("li");
