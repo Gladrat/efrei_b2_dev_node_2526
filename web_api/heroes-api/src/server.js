@@ -21,18 +21,6 @@ await Hero.create({
   identity: "Ryan Dhal",
   powerDate: "01/01/2009",
 });
-// console.log(newHero.id);
-
-// const batman = await Hero.findByPk(newHero.id)
-// console.log(batman);
-
-// await batman.update({alias: "Joker"})
-// await Hero.create(b)
-
-// const r = await Hero.findOne({where: {alias: "Joker"}})
-// console.log(JSON.stringify(r));
-
-// const destroyedHero = await r.destroy()
 
 const app = express();
 const port = 3000;
@@ -49,7 +37,8 @@ app.get("/api/v1", (req, res) => {
 });
 
 app.get("/api/v1/heroes", async (req, res) => {
-  res.json(await Hero.findAll());
+  // res.json();
+  res.send(renderToHTML(await Hero.findAll()))
 });
 
 app.listen(port, () => {
