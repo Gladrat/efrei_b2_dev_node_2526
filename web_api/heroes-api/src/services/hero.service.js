@@ -46,7 +46,7 @@ export async function updateHero(id, { alias, identity, powerDate }) {
 export async function deleteHero(id) {
   const hero = await getHeroById(id); // fonctionne ? NOP
 
-  return await HeroRepository.deleteHero(hero);
+  return await HeroRepository.deleteHero(id);
 }
 
 await sequelize.sync({ force: true });
