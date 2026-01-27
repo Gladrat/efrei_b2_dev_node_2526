@@ -8,7 +8,14 @@ export async function getAllHeroes() {
 
 }
 
+// Identity >= 3 caractères
+// Alias unique
 export async function createHero() {
+
+}
+
+// Identique au createHero
+export async function updateHero() {
 
 }
 
