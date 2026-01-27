@@ -4,7 +4,7 @@ export async function createHero({ alias, identity, powerDate }) {
   return await Hero.create({ alias, identity, powerDate });
 }
 
-export async function getOneHero(id) {
+export async function getHeroById(id) {
   const hero = await Hero.findByPk(id);
   if (!hero) return null;
 
@@ -15,14 +15,14 @@ export async function getAllHeroes() {
   return await Hero.findAll();
 }
 
-export async function updateHero(id, update) {
-  const hero = getOneHero(id);
+export async function updateHero(id, update={}) {
+  const hero = await getHeroById(id);
 
   return await hero.update(update);
 }
 
 export async function deleteHero(id) {
-  const hero = await getOneHero(id);
+  const hero = await getHeroById(id);
 
   return await hero.destroy();
 }

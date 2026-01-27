@@ -1,22 +1,22 @@
 import express from "express";
 
 import sequelize from "./config/index.js";
-import Hero from "./models/hero.model.js";
+import { createHero, getAllHeroes } from "./repositories/hero.repository.js";
 
 await sequelize.sync({ force: true });
 console.log("La base de données est synchro !");
 
-await Hero.create({
+await createHero({
   alias: "Batman",
   identity: "Bruce Wayne",
   powerDate: "01/01/2026",
 });
-await Hero.create({
+await createHero({
   alias: "Joker",
   identity: "Bruce Wayne",
   powerDate: "01/01/2026",
 });
-await Hero.create({
+await createHero({
   alias: "SuperNode",
   identity: "Ryan Dhal",
   powerDate: "01/01/2009",
@@ -37,8 +37,7 @@ app.get("/api/v1", (req, res) => {
 });
 
 app.get("/api/v1/heroes", async (req, res) => {
-  // res.json();
-  res.send(renderToHTML(await Hero.findAll()))
+  res.send(await getAllHeroes());
 });
 
 app.listen(port, () => {
