@@ -79,4 +79,4 @@ console.log((await getHeroById(batman.id)).id);
 //   }),
 // );
 
-await deleteHero(batman.id)
+await deleteHero(batman.id);
