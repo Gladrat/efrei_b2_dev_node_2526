@@ -15,7 +15,7 @@ export async function getAllHeroes() {
   return await Hero.findAll();
 }
 
-export async function updateHero(id, update={}) {
+export async function updateHero(id, update = {}) {
   const hero = await getHeroById(id);
 
   return await hero.update(update);
@@ -25,4 +25,8 @@ export async function deleteHero(id) {
   const hero = await getHeroById(id);
 
   return await hero.destroy();
+}
+
+export async function heroExists(alias) {
+  return Boolean(await Hero.findOne({ where: { alias } }));
 }

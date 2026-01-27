@@ -12,7 +12,7 @@ const model = {
     allowNull: false,
   },
   powerDate: {
-    type: DataTypes.STRING,
+    type: DataTypes.DATEONLY,
     allowNull: false,
   },
   id: {

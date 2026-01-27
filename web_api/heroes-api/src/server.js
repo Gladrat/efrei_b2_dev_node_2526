@@ -9,17 +9,17 @@ console.log("La base de données est synchro !");
 await createHero({
   alias: "Batman",
   identity: "Bruce Wayne",
-  powerDate: "01/01/2026",
+  powerDate: "2026-01-01",
 });
 await createHero({
   alias: "Joker",
   identity: "Bruce Wayne",
-  powerDate: "01/01/2026",
+  powerDate: "2026-01-01",
 });
 await createHero({
   alias: "SuperNode",
   identity: "Ryan Dhal",
-  powerDate: "01/01/2009",
+  powerDate: "2029-01-01",
 });
 
 const app = express();
