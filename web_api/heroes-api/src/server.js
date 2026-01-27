@@ -4,16 +4,21 @@ import Hero from "./models/hero.model.js";
 await sequelize.sync({ force: true });
 console.log("La base de données est synchro !");
 
-const newHero = await Hero.create({
-  alias: "Batman",
-  identity: "Bruce Wayne",
-  powerDate: "01/01/2026"
-})
+// const b = {
+//   alias: "Batman",
+//   identity: "Bruce Wayne",
+//   powerDate: "01/01/2026"
+// }
+// const newHero = await Hero.create(b)
+// console.log(newHero.id);
 
-console.log(newHero.id);
+// const batman = await Hero.findByPk(newHero.id)
+// console.log(batman);
 
-const batman = await Hero.findByPk(newHero.id)
+// await batman.update({alias: "Joker"})
+// await Hero.create(b)
 
-console.log(batman);
+// const r = await Hero.findOne({where: {alias: "Joker"}})
+// console.log(JSON.stringify(r));
 
-await batman.update({alias: "Joker"})
+// const destroyedHero = await r.destroy()
