@@ -12,7 +12,11 @@ export async function getHeroById(id) {
 }
 
 export async function getAllHeroes() {
-  return await HeroRepository.getAllHeroes();
+  return (await HeroRepository.getAllHeroes()).map((h) => ({
+    id: h.id,
+    alias: h.alias,
+    powerDate: h.powerDate,
+  }));
 }
 
 async function validateHero({ identity, alias }, excludedId = null) {
@@ -77,30 +81,30 @@ console.log(
   ).id,
 );
 
-console.log((await getAllHeroes()).map((h) => h.id));
+console.log(await getAllHeroes());
+// console.log((await getAllHeroes()).map((h) => h.id));
 
-console.log((await getHeroById(batman.id)).id);
+// console.log((await getHeroById(batman.id)).id);
 
-console.log(
-  await updateHero(batman.id, {
-    powerDate: "2050-01-01",
-  }),
-);
+// console.log(
+//   await updateHero(batman.id, {
+//     powerDate: "2050-01-01",
+//   }),
+// );
 
 // await deleteHero(batman.id);
 
-
 /**
-* ## Exercice : Règles métier
-*
-* ### Règle n°1 : Identité secrète
-*
-* - Exclure **l'identité complète** (ne pas retourner `identity`).
-* - **Note :** Cela doit s’appliquer sur `getAllHeroes()` uniquement !
-*
-* ### Règles n°2 : Un héros ne meurt jamais (et des fois ils ressuscitent)
-*
-* - Mettre en place une `suppression logique` (ou `soft delete`)
-* - Mettre en place une résurrection (annulation de la suppression logique)
-*
-*/
+ * ## Exercice : Règles métier
+ *
+ * ### Règle n°1 : Identité secrète
+ *
+ * - Exclure **l'identité complète** (ne pas retourner `identity`).
+ * - **Note :** Cela doit s’appliquer sur `getAllHeroes()` uniquement !
+ *
+ * ### Règles n°2 : Un héros ne meurt jamais (et des fois ils ressuscitent)
+ *
+ * - Mettre en place une `suppression logique` (ou `soft delete`)
+ * - Mettre en place une résurrection (annulation de la suppression logique)
+ *
+ */
