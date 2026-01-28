@@ -12,11 +12,10 @@ export async function getHeroById(id) {
 }
 
 export async function getAllHeroes() {
-  return (await HeroRepository.getAllHeroes()).map((h) => ({
-    id: h.id,
-    alias: h.alias,
-    powerDate: h.powerDate,
-  }));
+  return (await HeroRepository.getAllHeroes()).map((h) => {
+    const { identity, ...publicData } = h.toJSON();
+    return publicData;
+  });
 }
 
 async function validateHero({ identity, alias }, excludedId = null) {
