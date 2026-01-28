@@ -5,14 +5,14 @@ export async function createHero({ alias, identity, powerDate }) {
 }
 
 export async function getHeroById(id) {
-  const hero = await Hero.findByPk(id);
+  const hero = await Hero.scope("withDeleted").findByPk(id);
   if (!hero) return null;
 
   return hero;
 }
 
-export async function getAllHeroes() {
-  return await Hero.findAll();
+export async function getAllHeroes(isDeleted) {
+  return await Hero.scope(isDeleted ? "withDeleted" : "defaultScope").findAll();
 }
 
 export async function updateHero(id, update = {}) {

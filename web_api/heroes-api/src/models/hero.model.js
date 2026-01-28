@@ -1,5 +1,5 @@
 import sequelize from "../config/index.js";
-import { DataTypes } from "sequelize";
+import { DataTypes, where } from "sequelize";
 
 const model = {
   alias: {
@@ -29,9 +29,14 @@ const model = {
 const Hero = sequelize.define("Hero", model, {
   defaultScope: {
     where: {
-      isDeleted: false
-    }
-  }
+      isDeleted: false,
+    },
+  },
+  scopes: {
+    withDeleted: {
+      where: {},
+    },
+  },
 });
 
 export default Hero;

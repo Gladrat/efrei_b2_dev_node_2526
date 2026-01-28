@@ -12,14 +12,11 @@ export async function getHeroById(id) {
   return hero;
 }
 
-// identity / isDeleted
-export async function getAllHeroes() {
-  return (await HeroRepository.getAllHeroes())
-    // .filter((h) => h.isDeleted === false)
-    .map((h) => {
-      const { identity, ...publicData } = h.toJSON();
-      return publicData;
-    });
+export async function getAllHeroes(isDeleted = true) {
+  return (await HeroRepository.getAllHeroes(isDeleted)).map((h) => {
+    const { identity, ...publicData } = h.toJSON();
+    return publicData;
+  });
 }
 
 async function validateHero({ identity, alias }, excludedId = null) {
@@ -86,8 +83,6 @@ console.log(
 
 // console.log((await getAllHeroes()).map((h) => h.id));
 
-// console.log((await getHeroById(batman.id)).id);
-
 // console.log(
 //   await updateHero(batman.id, {
 //     powerDate: "2050-01-01",
@@ -97,7 +92,7 @@ console.log(
 await deleteHero(batman.id);
 
 console.log(await getAllHeroes());
-
+console.log((await getHeroById(batman.id)).id);
 
 /**
  * ## Exercice : Règles métier
