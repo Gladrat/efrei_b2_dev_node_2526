@@ -32,7 +32,7 @@ const port = 3000;
 app.use(express.static("public"));
 app.use((req, res, next) => {
   console.log(`${new Intl.DateTimeFormat("fr-FR", { dateStyle: "short", timeStyle: "medium" }).format(new Date())} ${req.method} ${req.url}`);
-  next()
+  next() 
 })
 
 app.get("/", (req, res) => {
@@ -45,6 +45,7 @@ app.get("/api/v1", (req, res) => {
 });
 
 app.get("/api/v1/heroes", heroController.getAllHeroes);
+app.get("/api/v1/heroes/:id", heroController.getHeroById)
 
 app.listen(port, () => {
   console.log(`Server launched at http://localhost:${port}`);
