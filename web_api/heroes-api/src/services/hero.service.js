@@ -88,3 +88,19 @@ console.log(
 );
 
 // await deleteHero(batman.id);
+
+
+/**
+* ## Exercice : Règles métier
+*
+* ### Règle n°1 : Identité secrète
+*
+* - Exclure **l'identité complète** (ne pas retourner `identity`).
+* - **Note :** Cela doit s’appliquer sur `getAllHeroes()` uniquement !
+*
+* ### Règles n°2 : Un héros ne meurt jamais (et des fois ils ressuscitent)
+*
+* - Mettre en place une `suppression logique` (ou `soft delete`)
+* - Mettre en place une résurrection (annulation de la suppression logique)
+*
+*/
