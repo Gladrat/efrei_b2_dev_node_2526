@@ -20,5 +20,15 @@ export async function getHeroById(req, res) {
 }
 
 export async function createHero(req, res) {
-  // ???
+  try {
+    const { alias, identity, powerDate } = req.body;
+    const newHero = await heroService.createHero({
+      alias,
+      identity,
+      powerDate,
+    });
+    res.status(201).json(newHero); // Une création de ressource réussie → 201
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
 }

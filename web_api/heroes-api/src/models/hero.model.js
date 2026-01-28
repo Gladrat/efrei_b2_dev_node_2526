@@ -31,6 +31,7 @@ const Hero = sequelize.define("Hero", model, {
     where: {
       isDeleted: false,
     },
+    attributes: { exclude: ["createdAt", "updatedAt"] },
   },
   scopes: {
     withDeleted: {

@@ -1,33 +1,12 @@
 import express from "express";
 
-import sequelize from "./config/index.js";
-import { heroController } from "./controller/index.js";
-import { createHero } from "./services/hero.service.js";
-import { heroService } from "./services/index.js";
+import { seedDatabase } from "./seeds/index.js";
+import { heroRoutes, apiRoutes, powerRoutes } from "./routes/index.js";
 
-await sequelize.sync({ force: true });
-console.log("La base de données est synchro !");
-
-const batman = await createHero({
-  alias: "Batman",
-  identity: "Bruce Wayne",
-  powerDate: "2026-01-01",
-});
-await createHero({
-  alias: "Joker",
-  identity: "Bruce Wayne",
-  powerDate: "2026-01-01",
-});
-await createHero({
-  alias: "SuperNode",
-  identity: "Ryan Dhal",
-  powerDate: "2029-01-01",
-});
-
-await heroService.deleteHero(batman.id);
+await seedDatabase();
 
 const app = express();
-const port = 3000;
+const port = 3002;
 
 app.use(express.static("public"));
 app.use(express.json());
@@ -39,18 +18,9 @@ app.use((req, res, next) => {
   next();
 });
 
-app.get("/", (req, res) => {
-  res.send(`<h1>Welcome on S.H.I.E.L.D API</h1>
-<h2>The API is located on <a href="/api/v1">/api/v1</a><h2>`);
-});
-
-app.get("/api/v1", (req, res) => {
-  res.json({ message: "S.H.I.E.L.D API is working." });
-});
-
-app.get("/api/v1/heroes", heroController.getAllHeroes);
-app.get("/api/v1/heroes/:id", heroController.getHeroById);
-// curl -X "POST" "http://localhost:3000/api/v1/heroes" -d '{"hello":"world"}' -H "Content-Type: application/json"
+app.use("/api/v1/heroes", heroRoutes.router);
+app.use("/api/v1/powers", powerRoutes.router);
+app.use("/", apiRoutes.router);
 
 app.listen(port, () => {
   console.log(`Server launched at http://localhost:${port}`);
