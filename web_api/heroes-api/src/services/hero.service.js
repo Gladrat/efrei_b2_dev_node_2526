@@ -1,7 +1,6 @@
 import sequelize from "../config/index.js";
 import { HeroRepository } from "../repositories/index.js";
 
-// identity / isDeleted
 export async function getHeroById(id) {
   const hero = await HeroRepository.getHeroById(id);
 
