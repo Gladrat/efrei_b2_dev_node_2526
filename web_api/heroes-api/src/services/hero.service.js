@@ -1,6 +1,7 @@
 import sequelize from "../config/index.js";
 import { HeroRepository } from "../repositories/index.js";
 
+// identity / isDeleted
 export async function getHeroById(id) {
   const hero = await HeroRepository.getHeroById(id);
 
@@ -11,11 +12,14 @@ export async function getHeroById(id) {
   return hero;
 }
 
+// identity / isDeleted
 export async function getAllHeroes() {
-  return (await HeroRepository.getAllHeroes()).map((h) => {
-    const { identity, ...publicData } = h.toJSON();
-    return publicData;
-  });
+  return (await HeroRepository.getAllHeroes())
+    // .filter((h) => h.isDeleted === false)
+    .map((h) => {
+      const { identity, ...publicData } = h.toJSON();
+      return publicData;
+    });
 }
 
 async function validateHero({ identity, alias }, excludedId = null) {
@@ -93,6 +97,7 @@ console.log(
 await deleteHero(batman.id);
 
 console.log(await getAllHeroes());
+
 
 /**
  * ## Exercice : Règles métier

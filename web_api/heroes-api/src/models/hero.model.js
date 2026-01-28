@@ -26,6 +26,12 @@ const model = {
   },
 };
 
-const Hero = sequelize.define("Hero", model);
+const Hero = sequelize.define("Hero", model, {
+  defaultScope: {
+    where: {
+      isDeleted: false
+    }
+  }
+});
 
 export default Hero;
