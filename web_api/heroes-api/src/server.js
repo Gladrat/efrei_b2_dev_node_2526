@@ -50,6 +50,7 @@ app.get("/api/v1", (req, res) => {
 
 app.get("/api/v1/heroes", heroController.getAllHeroes);
 app.get("/api/v1/heroes/:id", heroController.getHeroById);
+// curl -X "POST" "http://localhost:3000/api/v1/heroes" -d '{"hello":"world"}' -H "Content-Type: application/json"
 
 app.listen(port, () => {
   console.log(`Server launched at http://localhost:${port}`);

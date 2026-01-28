@@ -18,3 +18,7 @@ export async function getHeroById(req, res) {
     res.status(500).json({ error: error.message });
   }
 }
+
+export async function createHero(req, res) {
+  // ???
+}
