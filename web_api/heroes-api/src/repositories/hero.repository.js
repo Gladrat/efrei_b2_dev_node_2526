@@ -27,6 +27,12 @@ export async function deleteHero(id) {
   return await hero.destroy();
 }
 
-export async function heroExists(alias) {
-  return Boolean(await Hero.findOne({ where: { alias } }));
+export async function heroExists(alias, excludedId = null) {
+  const hero = await Hero.findOne({ where: { alias } })
+  
+  if (!hero) return false;
+
+  if (excludedId && hero.id === excludedId) return false;
+
+  return true
 }
