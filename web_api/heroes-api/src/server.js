@@ -24,16 +24,20 @@ await createHero({
   powerDate: "2029-01-01",
 });
 
-await heroService.deleteHero(batman.id)
+await heroService.deleteHero(batman.id);
 
 const app = express();
 const port = 3000;
 
 app.use(express.static("public"));
+app.use(express.json());
+
 app.use((req, res, next) => {
-  console.log(`${new Intl.DateTimeFormat("fr-FR", { dateStyle: "short", timeStyle: "medium" }).format(new Date())} ${req.method} ${req.url}`);
-  next() 
-})
+  console.log(
+    `${new Intl.DateTimeFormat("fr-FR", { dateStyle: "short", timeStyle: "medium" }).format(new Date())} ${req.method} ${req.url} ${JSON.stringify(req.body)}`,
+  );
+  next();
+});
 
 app.get("/", (req, res) => {
   res.send(`<h1>Welcome on S.H.I.E.L.D API</h1>
@@ -45,7 +49,7 @@ app.get("/api/v1", (req, res) => {
 });
 
 app.get("/api/v1/heroes", heroController.getAllHeroes);
-app.get("/api/v1/heroes/:id", heroController.getHeroById)
+app.get("/api/v1/heroes/:id", heroController.getHeroById);
 
 app.listen(port, () => {
   console.log(`Server launched at http://localhost:${port}`);

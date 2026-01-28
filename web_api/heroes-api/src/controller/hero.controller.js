@@ -14,6 +14,7 @@ export async function getHeroById(req, res) {
     const hero = await heroService.getHeroById(req.params.id);
     res.json(hero);
   } catch (error) {
+    // Problème de gestion d'erreur
     res.status(500).json({ error: error.message });
   }
 }
