@@ -18,8 +18,12 @@ const model = {
   id: {
     type: DataTypes.UUID,
     defaultValue: DataTypes.UUIDV4,
-    primaryKey: true
-  }
+    primaryKey: true,
+  },
+  isDeleted: {
+    type: DataTypes.BOOLEAN,
+    defaultValue: false,
+  },
 };
 
 const Hero = sequelize.define("Hero", model);

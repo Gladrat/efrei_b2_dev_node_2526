@@ -24,15 +24,21 @@ export async function updateHero(id, update = {}) {
 export async function deleteHero(id) {
   const hero = await getHeroById(id);
 
-  return await hero.destroy();
+  if (!hero) return null;
+
+  hero.isDeleted = true;
+  await hero.save();
+  return hero
+
+  // return await hero.destroy();
 }
 
 export async function heroExists(alias, excludedId = null) {
-  const hero = await Hero.findOne({ where: { alias } })
-  
+  const hero = await Hero.findOne({ where: { alias } });
+
   if (!hero) return false;
 
   if (excludedId && hero.id === excludedId) return false;
 
-  return true
+  return true;
 }

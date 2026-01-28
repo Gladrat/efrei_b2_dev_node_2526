@@ -80,7 +80,6 @@ console.log(
   ).id,
 );
 
-console.log(await getAllHeroes());
 // console.log((await getAllHeroes()).map((h) => h.id));
 
 // console.log((await getHeroById(batman.id)).id);
@@ -91,7 +90,9 @@ console.log(await getAllHeroes());
 //   }),
 // );
 
-// await deleteHero(batman.id);
+await deleteHero(batman.id);
+
+console.log(await getAllHeroes());
 
 /**
  * ## Exercice : Règles métier
