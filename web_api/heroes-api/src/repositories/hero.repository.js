@@ -11,8 +11,10 @@ export async function getHeroById(id) {
   return hero;
 }
 
-export async function getAllHeroes(isDeleted) {
-  return await Hero.scope(isDeleted ? "withDeleted" : "defaultScope").findAll();
+export async function getAllHeroes(withDeleted = false) {
+  return await Hero.scope(
+    withDeleted ? "withDeleted" : "defaultScope",
+  ).findAll();
 }
 
 export async function updateHero(id, update = {}) {
@@ -28,7 +30,7 @@ export async function deleteHero(id) {
 
   hero.isDeleted = true;
   await hero.save();
-  return hero
+  return hero;
 
   // return await hero.destroy();
 }

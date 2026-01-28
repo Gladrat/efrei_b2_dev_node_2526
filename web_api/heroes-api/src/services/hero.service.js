@@ -12,8 +12,8 @@ export async function getHeroById(id) {
   return hero;
 }
 
-export async function getAllHeroes(isDeleted = true) {
-  return (await HeroRepository.getAllHeroes(isDeleted)).map((h) => {
+export async function getAllHeroes(withDeleted = false) {
+  return (await HeroRepository.getAllHeroes(withDeleted)).map((h) => {
     const { identity, ...publicData } = h.toJSON();
     return publicData;
   });
