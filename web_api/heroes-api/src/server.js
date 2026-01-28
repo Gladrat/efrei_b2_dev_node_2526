@@ -1,12 +1,14 @@
 import express from "express";
 
 import sequelize from "./config/index.js";
-import { createHero, getAllHeroes } from "./repositories/hero.repository.js";
+import { heroController } from "./controller/index.js";
+import { createHero } from "./services/hero.service.js";
+import { heroService } from "./services/index.js";
 
 await sequelize.sync({ force: true });
 console.log("La base de données est synchro !");
 
-await createHero({
+const batman = await createHero({
   alias: "Batman",
   identity: "Bruce Wayne",
   powerDate: "2026-01-01",
@@ -22,6 +24,8 @@ await createHero({
   powerDate: "2029-01-01",
 });
 
+await heroService.deleteHero(batman.id)
+
 const app = express();
 const port = 3000;
 
@@ -36,9 +40,7 @@ app.get("/api/v1", (req, res) => {
   res.json({ message: "S.H.I.E.L.D API is working." });
 });
 
-app.get("/api/v1/heroes", async (req, res) => {
-  res.send(await getAllHeroes());
-});
+app.get("/api/v1/heroes", heroController.getAllHeroes);
 
 app.listen(port, () => {
   console.log(`Server launched at http://localhost:${port}`);

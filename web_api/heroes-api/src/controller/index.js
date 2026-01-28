@@ -1,0 +1,1 @@
+export * as heroController from "./hero.controller.js"
