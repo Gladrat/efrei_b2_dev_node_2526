@@ -30,6 +30,10 @@ const app = express();
 const port = 3000;
 
 app.use(express.static("public"));
+app.use((req, res, next) => {
+  console.log(`${req.method} ${req.url}`);
+  next()
+})
 
 app.get("/", (req, res) => {
   res.send(`<h1>Welcome on S.H.I.E.L.D API</h1>
