@@ -32,6 +32,7 @@ export async function createHero({ alias, identity, powerDate }) {
  * EXERCICE : Refactoriser la fonction updateHero
  *
  * Cette fonction contient 3 problèmes à corriger :
+ * ATTENTION : Les solutions ne sont pas forcément à implémenter dans cet ordre !
  *
  * ------------------------------------------------------------------
  * PROBLÈME 1 : Code dupliqué (DRY - Don't Repeat Yourself)
