@@ -22,14 +22,20 @@ export async function getHeroById(req, res) {
 export async function createHero(req, res) {
   try {
     const { alias, identity, powerDate } = req.body;
-    const newHero = await heroService.createHero({
+    const newHero = await heroService.createHeroo({
       alias,
       identity,
       powerDate,
     });
     res.status(200).json(newHero);
-  } catch (error) {
-    res.status(500).json({ error: error.message });
+  } catch (error) {    
+    if (error.message === "Alias already exists: Joker") {
+      res.status(409).json({ error: error.message });
+    } else if (error.message === "Identity malformed (3 car min)") {
+      res.status(400).json({ error: error.message });
+    } else {
+      res.status(500).json({ error: "Unexpected server error" });
+    }
   }
 }
 
