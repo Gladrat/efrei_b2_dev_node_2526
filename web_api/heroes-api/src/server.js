@@ -1,7 +1,7 @@
 import express from "express";
 
 import seedDatabase from "./seeds/index.js";
-import { heroRoute, apiRoute } from "./routes/index.js";
+import { heroRoute, apiRoute, powerRoute } from "./routes/index.js";
 import { errorHandler } from "./middlewares/errorHandler.js";
 
 await seedDatabase();
@@ -21,6 +21,7 @@ app.use((req, res, next) => {
 
 app.use("/", apiRoute.router);
 app.use("/api/v1/heroes", heroRoute.router);
+app.use("/api/v1/powers", powerRoute.router);
 
 app.use(errorHandler)
 
