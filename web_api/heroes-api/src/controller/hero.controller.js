@@ -32,3 +32,28 @@ export async function createHero(req, res) {
     res.status(500).json({ error: error.message });
   }
 }
+
+export async function updateHero(req, res) {
+  try {
+    const { id } = req.params;
+    const { alias, identity, powerDate } = req.body;
+    const updatedHero = await heroService.updateHero(id, {
+      alias,
+      identity,
+      powerDate,
+    });
+    res.json(updatedHero);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+}
+
+export async function deleteHero(req, res) {
+  try {
+    const { id } = req.params;
+    const deletedHero = await heroService.deleteHero(id)
+    res.json(deletedHero)
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+}

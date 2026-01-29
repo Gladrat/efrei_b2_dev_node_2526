@@ -1,13 +1,19 @@
 # Instructions CURL
 
-## Requête GET
+## Tous les héros (GET)
 
 curl "http://localhost:3000/api/v1/heroes"
 
-- Permet de récupérer le GET (par défaut)
-
-## Requête POST
+## Créer un héro : POST
 
 curl -X "POST" "http://localhost:3000/api/v1/heroes" -d '{"identity":"John Doe", "alias":"SuperNul", "powerDate": "1985-05-07"}' -H "Content-Type: application/json"
 
-- Permet d'envoyer des données en POST au service Web
+## Modifier un héro : PUT ou PATCH
+
+curl -X "POST" "http://localhost:3000/api/v1/heroes/2" -d '{"powerDate": "1985-05-07"}' -H "Content-Type: application/json"  
+
+curl -X "PATCH" "http://localhost:3000/api/v1/heroes/2" -d '{"identity":"Jane Doe", "alias":"SuperNulle", "powerDate": "1985-05-07"}' -H "Content-Type: application/json"
+
+## Delete un héro : DELETE
+
+curl -X "DELETE" "http://localhost:3000/api/v1/heroes/2" -d '{"powerDate": "1985-05-07"}' -H "Content-Type: application/json"

@@ -15,7 +15,7 @@ app.use((req, res, next) => {
   console.log(
     `${new Intl.DateTimeFormat("fr-FR", { dateStyle: "short", timeStyle: "medium" }).format(new Date())} ${req.method} ${req.url} ${JSON.stringify(req.body)}`,
   );
-  console.log(req.headers);
+  // console.log(req.headers);
   next();
 });
 
@@ -29,8 +29,12 @@ app.get("/api/v1", (req, res) => {
 });
 
 app.get("/api/v1/heroes", heroController.getAllHeroes);
-app.get("/api/v1/heroes/:id", heroController.getHeroById);
 app.post("/api/v1/heroes", heroController.createHero);
+
+app.get("/api/v1/heroes/:id", heroController.getHeroById);
+app.put("/api/v1/heroes/:id", heroController.updateHero);
+app.patch("/api/v1/heroes/:id", heroController.updateHero);
+app.delete("/api/v1/heroes/:id", heroController.deleteHero);
 
 app.listen(port, () => {
   console.log(`Server launched at http://localhost:${port}`);
