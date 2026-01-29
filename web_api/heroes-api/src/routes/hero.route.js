@@ -14,3 +14,6 @@ router.delete("/:id", heroController.deleteHero);
 
 // endpoint métier
 router.patch("/:id/restore", heroController.restoreHero);
+
+// router.post("/:id/power/:powerId", heroController.restoreHero);
+// router.post("/:id/powers", heroController.restoreHero);
