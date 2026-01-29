@@ -23,6 +23,10 @@ async function validateHero({ identity, alias }, excludedId = null) {
     throw new ErrorManager.ValidatorError("Identity malformed (3 car min)");
   }
 
+  if (!alias || alias.length < 2) {
+    throw new ErrorManager.ValidatorError("Alias malformed (3 car min)");
+  }
+
   if (await HeroRepository.heroExists(alias, excludedId)) {
     throw new ErrorManager.ConflictError(`Alias already exists: ${alias}`);
   }

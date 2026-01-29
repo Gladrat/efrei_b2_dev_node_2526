@@ -21,7 +21,7 @@ export async function getHeroById(req, res, next) {
 export async function createHero(req, res, next) {
   try {
     const { alias, identity, powerDate } = req.body;
-    const newHero = await heroService.createHeroo({
+    const newHero = await heroService.createHero({
       alias,
       identity,
       powerDate,
@@ -51,7 +51,7 @@ export async function deleteHero(req, res, next) {
   try {
     const { id } = req.params;
     const deletedHero = await heroService.deleteHero(id);
-    res.json(deletedHero);
+    res.status(204).json(deletedHero);
   } catch (error) {
     next(error)
   }
