@@ -62,4 +62,14 @@ export async function deleteHero(id) {
   return await HeroRepository.deleteHero(id);
 }
 
+// Pur service métier
+export async function restoreHero(id) {
+  const hero = await getHeroById(id);
+
+  hero.isDeleted = false;
+  hero.save();
+
+  return true;
+}
+
 // await sequelize.sync({ force: true });

@@ -26,6 +26,7 @@ export async function seedHeroes() {
     heroes.push(await heroService.createHero(h));
   }  
   await heroService.deleteHero(heroes[0].id);
+  // await heroService.restoreHero(heroes[0].id)
   await heroService.updateHero(heroes[2].id, { alias: "SuperNodeJS" });
   return heroes;
 }

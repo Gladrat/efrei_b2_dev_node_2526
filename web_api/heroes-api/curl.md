@@ -17,3 +17,8 @@ curl -X "PATCH" "http://localhost:3000/api/v1/heroes/2" -d '{"identity":"Jane Do
 ## Delete un héro : DELETE
 
 curl -X "DELETE" "http://localhost:3000/api/v1/heroes/2" -d '{"powerDate": "1985-05-07"}' -H "Content-Type: application/json"
+
+## Restore un héro : PATCH
+
+curl -X "PATCH" "http://localhost:3000/api/v1/heroes/1/restore" -H "Content-Type: application/json"
+

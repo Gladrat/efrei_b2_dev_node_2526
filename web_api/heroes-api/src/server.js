@@ -36,6 +36,9 @@ app.put("/api/v1/heroes/:id", heroController.updateHero);
 app.patch("/api/v1/heroes/:id", heroController.updateHero);
 app.delete("/api/v1/heroes/:id", heroController.deleteHero);
 
+// endpoint métier
+app.patch("/api/v1/heroes/:id/restore", heroController.restoreHero);
+
 app.listen(port, () => {
   console.log(`Server launched at http://localhost:${port}`);
 });

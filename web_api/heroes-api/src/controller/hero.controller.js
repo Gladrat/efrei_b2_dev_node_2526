@@ -51,8 +51,18 @@ export async function updateHero(req, res) {
 export async function deleteHero(req, res) {
   try {
     const { id } = req.params;
-    const deletedHero = await heroService.deleteHero(id)
-    res.json(deletedHero)
+    const deletedHero = await heroService.deleteHero(id);
+    res.json(deletedHero);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+}
+
+export async function restoreHero(req, res) {
+  try {
+    const { id } = req.params;
+    const isRestored = await heroService.restoreHero(id);
+    res.json({ isRestored });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
