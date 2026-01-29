@@ -1,4 +1,4 @@
-import Hero from "../models/hero.model.js";
+import { Hero, Power } from "../models/index.js";
 
 export async function createHero({ alias, identity, powerDate }) {
   return await Hero.create({ alias, identity, powerDate });
@@ -12,9 +12,9 @@ export async function getHeroById(id) {
 }
 
 export async function getAllHeroes(withDeleted = false) {
-  return await Hero.scope(
-    withDeleted ? "withDeleted" : "defaultScope",
-  ).findAll();
+  return await Hero.scope(withDeleted ? "withDeleted" : "defaultScope").findAll(
+    { include: [{ model: Power, through: { attributes: [] } }] },
+  );
 }
 
 export async function updateHero(id, update = {}) {

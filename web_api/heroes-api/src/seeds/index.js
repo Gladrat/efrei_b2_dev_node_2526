@@ -1,6 +1,7 @@
 import sequelize from "../config/index.js";
 import { seedHeroes } from "./hero.seed.js";
 import { seedPowers } from "./power.seed.js";
+import { seedHeroPowers } from "./heroPower.seed.js";
 
 export default async function seedDatabase() {
   await sequelize.sync({ force: true });
@@ -11,4 +12,7 @@ export default async function seedDatabase() {
 
   await seedHeroes();
   console.log("Hero seeding done.");
+
+  await seedHeroPowers();
+  console.log("Hero-Power associations seeding done.");
 }

@@ -1,4 +1,4 @@
-import Power from "../models/power.model.js";
+import { Power } from "../models/index.js";
 
 export async function createPower({ name }) {
   return await Power.create({ name });

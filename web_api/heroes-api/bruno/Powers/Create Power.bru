@@ -1,0 +1,21 @@
+meta {
+  name: Create Power
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{baseUrl}}/api/v1/powers
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "name": "Flight"
+  }
+}

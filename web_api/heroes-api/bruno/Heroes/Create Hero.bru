@@ -1,0 +1,23 @@
+meta {
+  name: Create Hero
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{baseUrl}}/api/v1/heroes
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "alias": "Iron-Man",
+    "identity": "Tony Stark",
+    "powerDate": "1995-06-20"
+  }
+}

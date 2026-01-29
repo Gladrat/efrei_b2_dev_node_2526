@@ -1,0 +1,23 @@
+meta {
+  name: Update Hero (PUT)
+  type: http
+  seq: 4
+}
+
+put {
+  url: {{baseUrl}}/api/v1/heroes/1
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "alias": "Spider-Man",
+    "identity": "Peter Parker",
+    "powerDate": "2002-08-15"
+  }
+}
