@@ -22,7 +22,7 @@ export async function getHeroById(req, res) {
 export async function createHero(req, res) {
   try {
     const { alias, identity, powerDate } = req.body;
-    const newHero = await heroService.createHeroo({
+    const newHero = await heroService.createHero({
       alias,
       identity,
       powerDate,
