@@ -25,7 +25,7 @@ class NotFoundError extends ApiError {
 
 class InternalServerError extends ApiError {
   constructor(message) {
-    super(message, 500); // Internal server error
+    super("Internal server error. It's not your fault!", 500); // Internal server error
   }
 }
 

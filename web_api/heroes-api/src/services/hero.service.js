@@ -1,11 +1,11 @@
-import sequelize from "../config/index.js";
+import ErrorManager from "../errors/api.errors.js";
 import { HeroRepository } from "../repositories/index.js";
 
 export async function getHeroById(id) {
   const hero = await HeroRepository.getHeroById(id);
 
   if (!hero) {
-    throw new Error(`Cannot find hero with id: ${id}`);
+    throw new ErrorManager.NotFoundError(`Cannot find hero with id: ${id}`);
   }
 
   return hero;
@@ -20,11 +20,11 @@ export async function getAllHeroes(withDeleted = false) {
 
 async function validateHero({ identity, alias }, excludedId = null) {
   if (!identity || identity.length < 3) {
-    throw new Error("Identity malformed (3 car min)");
+    throw new ErrorManager.ValidatorError("Identity malformed (3 car min)");
   }
 
   if (await HeroRepository.heroExists(alias, excludedId)) {
-    throw new Error(`Alias already exists: ${alias}`);
+    throw new ErrorManager.ConflictError(`Alias already exists: ${alias}`);
   }
 }
 

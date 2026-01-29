@@ -2,6 +2,7 @@ import express from "express";
 
 import seedDatabase from "./seeds/index.js";
 import { heroRoute, apiRoute } from "./routes/index.js";
+import { errorHandler } from "./middlewares/errorHandler.js";
 
 await seedDatabase();
 
@@ -20,6 +21,8 @@ app.use((req, res, next) => {
 
 app.use("/", apiRoute.router);
 app.use("/api/v1/heroes", heroRoute.router);
+
+app.use(errorHandler)
 
 app.listen(port, () => {
   console.log(`Server launched at http://localhost:${port}`);

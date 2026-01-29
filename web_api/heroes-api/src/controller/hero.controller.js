@@ -1,45 +1,38 @@
 import { heroService } from "../services/index.js";
 
-export async function getAllHeroes(req, res) {
+export async function getAllHeroes(req, res, next) {
   try {
     const heroes = await heroService.getAllHeroes();
     res.json(heroes);
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    next(error)
   }
 }
 
-export async function getHeroById(req, res) {
+export async function getHeroById(req, res, next) {
   try {
     const hero = await heroService.getHeroById(req.params.id);
     res.json(hero);
   } catch (error) {
-    // Problème de gestion d'erreur
-    res.status(500).json({ error: error.message });
+    next(error)
   }
 }
 
-export async function createHero(req, res) {
+export async function createHero(req, res, next) {
   try {
     const { alias, identity, powerDate } = req.body;
-    const newHero = await heroService.createHero({
+    const newHero = await heroService.createHeroo({
       alias,
       identity,
       powerDate,
     });
-    res.status(200).json(newHero);
+    res.status(201).json(newHero);
   } catch (error) {    
-    if (error.message === "Alias already exists: Joker") {
-      res.status(409).json({ error: error.message });
-    } else if (error.message === "Identity malformed (3 car min)") {
-      res.status(400).json({ error: error.message });
-    } else {
-      res.status(500).json({ error: "Unexpected server error" });
-    }
+    next(error)
   }
 }
 
-export async function updateHero(req, res) {
+export async function updateHero(req, res, next) {
   try {
     const { id } = req.params;
     const { alias, identity, powerDate } = req.body;
@@ -50,26 +43,26 @@ export async function updateHero(req, res) {
     });
     res.json(updatedHero);
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    next(error)
   }
 }
 
-export async function deleteHero(req, res) {
+export async function deleteHero(req, res, next) {
   try {
     const { id } = req.params;
     const deletedHero = await heroService.deleteHero(id);
     res.json(deletedHero);
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    next(error)
   }
 }
 
-export async function restoreHero(req, res) {
+export async function restoreHero(req, res, next) {
   try {
     const { id } = req.params;
     const isRestored = await heroService.restoreHero(id);
     res.json({ isRestored });
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    next(error)
   }
 }
