@@ -31,7 +31,6 @@ const port = 3000;
 
 app.use(express.static("public"));
 app.use(express.json());
-
 app.use((req, res, next) => {
   console.log(
     `${new Intl.DateTimeFormat("fr-FR", { dateStyle: "short", timeStyle: "medium" }).format(new Date())} ${req.method} ${req.url} ${JSON.stringify(req.body)}`,
