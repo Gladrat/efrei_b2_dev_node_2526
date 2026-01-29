@@ -29,10 +29,12 @@ class InternalServerError extends ApiError {
   }
 }
 
-export {
+const ErrorManager = {
   ApiError,
-  ValidatorError,
   ConflictError,
+  ValidatorError,
   NotFoundError,
   InternalServerError,
 };
+
+export default ErrorManager;
