@@ -1,6 +1,6 @@
 import { heroService } from "../services/index.js";
 
-export const heroDatas = [
+const heroDatas = [
   {
     alias: "Batman",
     identity: "Bruce Wayne",
@@ -23,9 +23,9 @@ export const heroDatas = [
 export async function seedHeroes() {
   const heroes = [];
   for (const h of heroDatas) {
-    heroes.push(await heroService.createHero(h))
+    heroes.push(await heroService.createHero(h));
   }
-  await heroService.deleteHero(heroes[0].id)
-  return heroes
+  await heroService.deleteHero(heroes[0].id);
+  await heroService.updateHero(heroes[2].id, { alias: "SuperNodeJS" });
+  return heroes;
 }
-

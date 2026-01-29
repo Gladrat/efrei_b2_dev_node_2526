@@ -3,6 +3,8 @@ import express from "express";
 import seedDatabase from "./seeds/index.js";
 import { heroController } from "./controller/index.js";
 
+await seedDatabase();
+
 const app = express();
 const port = 3000;
 
