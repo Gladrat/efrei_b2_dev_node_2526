@@ -1,0 +1,1 @@
+export * as heroRoute from "./hero.route.js";
