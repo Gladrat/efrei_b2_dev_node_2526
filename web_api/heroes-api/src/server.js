@@ -1,40 +1,19 @@
 import express from "express";
 
-import sequelize from "./config/index.js";
+import seedDatabase from "./seeds/index.js";
 import { heroController } from "./controller/index.js";
-import { createHero } from "./services/hero.service.js";
-import { heroService } from "./services/index.js";
-
-await sequelize.sync({ force: true });
-console.log("La base de données est synchro !");
-
-const batman = await createHero({
-  alias: "Batman",
-  identity: "Bruce Wayne",
-  powerDate: "2026-01-01",
-});
-await createHero({
-  alias: "Joker",
-  identity: "Bruce Wayne",
-  powerDate: "2026-01-01",
-});
-await createHero({
-  alias: "SuperNode",
-  identity: "Ryan Dhal",
-  powerDate: "2029-01-01",
-});
-
-await heroService.deleteHero(batman.id);
 
 const app = express();
 const port = 3000;
 
 app.use(express.static("public"));
+// Uniquement quand le header de la req "Content-Type: application/json"
 app.use(express.json());
 app.use((req, res, next) => {
   console.log(
     `${new Intl.DateTimeFormat("fr-FR", { dateStyle: "short", timeStyle: "medium" }).format(new Date())} ${req.method} ${req.url} ${JSON.stringify(req.body)}`,
   );
+  console.log(req.headers);
   next();
 });
 
@@ -49,7 +28,7 @@ app.get("/api/v1", (req, res) => {
 
 app.get("/api/v1/heroes", heroController.getAllHeroes);
 app.get("/api/v1/heroes/:id", heroController.getHeroById);
-// curl -X "POST" "http://localhost:3000/api/v1/heroes" -d '{"hello":"world"}' -H "Content-Type: application/json"
+app.post("/api/v1/heroes", heroController.createHero);
 
 app.listen(port, () => {
   console.log(`Server launched at http://localhost:${port}`);
